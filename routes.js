@@ -5,6 +5,27 @@ router.get('/', (req, res) => {
     res.send('✅ Factory Backend is running');
 });
 
+router.get('/db-status', async (req, res) => {
+    try {
+        const result = await pool.query(`
+            SELECT count(*) as table_count 
+            FROM information_schema.tables 
+            WHERE table_schema = 'public'
+        `);
+        const tableCount = result.rows[0].table_count;
+        res.send(`
+            <h1>✅ Database Connected Successfully</h1>
+            <p><strong>Total Tables Imported:</strong> ${tableCount}</p>
+            <p><strong>Status:</strong> Ready for production</p>
+        `);
+    } catch (err) {
+        res.status(500).send(`
+            <h1>❌ Database Connection Failed</h1>
+            <p>Error: ${err.message}</p>
+        `);
+    }
+});
+
 const pool = require('./db');
 const PDFDocument = require('pdfkit');
 const { monthlySummary } = require('./downreports');
