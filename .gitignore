@@ -1,0 +1,7 @@
+node_modules/
+.env
+.zencoder/
+.zenflow/
+uploads/pdfs/
+uploads/qrcodes/
+# Keep backup.sql for one-time import, then delete it later for security
