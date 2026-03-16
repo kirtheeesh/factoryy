@@ -6,7 +6,7 @@ const routes = require('./routes');
 const bcrypt = require('bcryptjs');
 const salesRouter = require('./sales/routes');
 const packingRouter = require('./packing_routes');
-const accountsRouter = require('../accounts/backend/routes');
+// const accountsRouter = require('../accounts/backend/routes');
 const downreports = require('./downreports');
 
 // 1. Make sure this filename matches exactly!
@@ -27,7 +27,7 @@ app.use('/sales', salesRouter);
 app.use('/packing', packingRouter);
 
 // 3.1 Accounts Routes
-app.use('/accounts', accountsRouter(express, bcrypt));
+// app.use('/accounts', accountsRouter(express, bcrypt));
 
 // 4. Your main routes
 app.use('/api', routes);
