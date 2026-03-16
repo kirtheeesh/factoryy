@@ -1,5 +1,10 @@
 const express = require('express');
 const router = express.Router();
+
+router.get('/', (req, res) => {
+    res.send('✅ Factory Backend is running');
+});
+
 const pool = require('./db');
 const PDFDocument = require('pdfkit');
 const { monthlySummary } = require('./downreports');
