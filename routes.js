@@ -61,9 +61,6 @@ router.get('/inventory/products', async (req, res) => {
         // Updated table name to singular: inventory_product
         const result = await pool.query('SELECT * FROM inventory_product ORDER BY product_name ASC');
         
-        // Log this to your server terminal to verify data is coming through
-        console.log("Found products:", result.rows); 
-        
         res.json(result.rows);
     } catch (err) {
         console.error("Database Error:", err.message);
@@ -421,7 +418,7 @@ router.post('/hourly_logs', async (req, res) => {
         remarks, timestamp, operator_id, hour_range, status 
     } = req.body;
     
-    console.log(`[HOURLY-LOG] Machine: ${machine_name}, Hour: ${hour_range}, Operator: ${operator_id}, Status: ${status}`);
+    console.log(`[HOURLY-LOG] Machine: ${machine_name}, Hour: ${hour_range}, Produced: ${hourly_output}, Total: ${total_output}, Operator: ${operator_id}, Status: ${status}`);
 
     try {
         // Safe Lazy Migrations (ensure columns exist before use)
