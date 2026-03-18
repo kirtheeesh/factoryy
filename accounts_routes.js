@@ -50,9 +50,9 @@ module.exports = (express, bcrypt) => {
             // Fetch Sales (Credit) - Both manual invoices and history orders
             let salesQuery = `
                 SELECT 
-                    id as "referenceNo", 
+                    id::TEXT as "referenceNo", 
                     customer_name as "partyName", 
-                    total_amount as "amount", 
+                    total_amount::NUMERIC as "amount", 
                     invoice_date as "date",
                     'CREDIT' as "type"
                 FROM sales_invoices 
@@ -61,9 +61,9 @@ module.exports = (express, bcrypt) => {
                 UNION ALL
                 
                 SELECT 
-                    h.invoice_number as "referenceNo", 
+                    h.invoice_number::TEXT as "referenceNo", 
                     COALESCE(c.name, h.customer_name_manual) as "partyName", 
-                    h.total_amount as "amount", 
+                    h.total_amount::NUMERIC as "amount", 
                     h.created_at as "date",
                     'CREDIT' as "type"
                 FROM sales_history h
