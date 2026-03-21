@@ -1,0 +1,5 @@
+node_modules/
+.env
+.zencoder/
+.zenflow/
+# Keep backup.sql for one-time import, then delete it later for security
